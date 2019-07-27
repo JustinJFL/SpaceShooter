@@ -30,7 +30,6 @@ public class GameController : MonoBehaviour
         UpdateScore();
         StartCoroutine(SpawnWaves());
         Screen.SetResolution(600, 900, true);
-
     }
 
     private void Update()
@@ -38,7 +37,7 @@ public class GameController : MonoBehaviour
 
         if (gameOver == true)
         {
-            if (Input.GetKeyDown(KeyCode.R)) 
+            if (Input.GetKeyDown(KeyCode.Space)) 
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
@@ -68,7 +67,7 @@ public class GameController : MonoBehaviour
                 if (gameOver == true)
                 {
                     restart = true;
-                    restartText.text = "Press \"R\" to restart.";
+                    restartText.text = "Press \"Spacebar\" to restart.";
                     break;
                 }
             }
@@ -91,7 +90,19 @@ public class GameController : MonoBehaviour
 
     void UpdateScore()
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Points: " + score;
+
+        if(score >= 200)
+        {
+            gameOverText.text = "You Win! \n Game Created By: Justin Snell";
+            scoreText.text = "";
+            gameOver = true;
+        }
+        else if(gameOver == true)
+        {
+            scoreText.text = "";
+            gameOver = true;
+        }
     }
 }
 
